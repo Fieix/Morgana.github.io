@@ -807,4 +807,123 @@ h2 {
 #volumeSlider::-moz-range-thumb:hover {
     transform: scale(1.2);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .game-area {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 3em;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+    }
+
+    h1 span:last-child {
+        margin-left: 50px;
+    }
+
+    .stats-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .stat-box {
+        min-width: unset;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .click-area {
+        width: 150px;
+        height: 150px;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 0.9em;
+        width: 100%;
+        white-space: normal;
+    }
+
+    .upgrade-item {
+        margin: 10px 0;
+    }
+
+    .current-track {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+
+    .audio-controls {
+        top: 10px;
+        right: 10px;
+    }
+
+    .volume-control {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        margin: 0;
+        justify-content: center;
+        z-index: 1001;
+    }
+
+    .audio-controls:hover .volume-control {
+        transform: translateY(0);
+    }
+
+    #volumeSlider {
+        width: 80%;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media screen and (max-width: 360px) {
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h1 span:last-child {
+        margin-left: 30px;
+    }
+
+    .click-area {
+        width: 120px;
+        height: 120px;
+    }
+
+    .stat-box {
+        padding: 10px;
+    }
+
+    .stat-value {
+        font-size: 1.5em;
+    }
+}
+
+/* Предотвращение масштабирования на мобильных устройствах при двойном тапе */
+@media (hover: none) {
+    .click-area:hover,
+    button:hover,
+    .stat-box:hover {
+        transform: none;
+    }
+
+    .click-area:active {
+        transform: scale(0.95);
+    }
+
+    button:active {
+        transform: translateY(2px);
+    }
 } 
