@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morgana Clicker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="particles-container">
+        <div class="particle" style="left: 10%"></div>
+        <div class="particle" style="left: 20%"></div>
+        <div class="particle" style="left: 30%"></div>
+        <div class="particle" style="left: 40%"></div>
+        <div class="particle" style="left: 50%"></div>
+        <div class="particle" style="left: 60%"></div>
+        <div class="particle" style="left: 70%"></div>
+        <div class="particle" style="left: 80%"></div>
+        <div class="particle" style="left: 90%"></div>
+        <div class="particle" style="left: 15%"></div>
+        <div class="particle" style="left: 25%"></div>
+        <div class="particle" style="left: 35%"></div>
+        <div class="particle" style="left: 45%"></div>
+        <div class="particle" style="left: 55%"></div>
+        <div class="particle" style="left: 65%"></div>
+        <div class="particle" style="left: 75%"></div>
+        <div class="particle" style="left: 85%"></div>
+        <div class="particle" style="left: 95%"></div>
+        <div class="particle" style="left: 5%"></div>
+        <div class="particle" style="left: 15%"></div>
+    </div>
+    <div class="container">
+        <div class="game-area">
+            <div class="audio-controls">
+                <button class="music-button">
+                    <span class="music-icon">🎵</span>
+                    <span>Музыка</span>
+                </button>
+                <div class="volume-control">
+                    <span class="volume-icon">🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                </div>
+                <audio id="bgMusic" preload="auto">
+                    <source src="" type="audio/mpeg">
+                </audio>
+            </div>
+            <div class="title-container">
+                <h1><span>Morgana</span><span>Clicker</span></h1>
+                <div class="current-track"></div>
+            </div>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Счёт</div>
+                        <div class="stat-value" id="score">0</div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Кликов в секунду</div>
+                        <div class="stat-value" id="clicks-per-second">0.0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="click-area" id="clickArea">
+                <img src="morgana_head.png" alt="Morgana" class="morgana">
+            </div>
+            <div class="upgrades">
+                <h2>Улучшения</h2>
+                <div class="upgrade-item">
+                    <button id="autoClicker">Автокликер (100 очков)</button>
+                </div>
+                <div class="upgrade-item">
+                    <button id="multiplier">Множитель +0.25 (200 очков)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
