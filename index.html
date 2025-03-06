@@ -31,18 +31,89 @@
     </div>
     <div class="container">
         <div class="game-area">
-            <div class="audio-controls">
-                <button class="music-button">
-                    <span class="music-icon">🎵</span>
-                    <span>Музыка</span>
+            <div class="top-controls">
+                <img src="settings.png" alt="Настройки" class="settings-icon" role="button" tabindex="0">
+                <button class="shop-button">
+                    <img src="shop icon.png" alt="Магазин" class="shop-icon" role="button" tabindex="0">
                 </button>
-                <div class="volume-control">
-                    <span class="volume-icon">🔊</span>
-                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+            </div>
+            <div class="settings-modal">
+                <div class="settings-content">
+                    <h2>Настройки</h2>
+                    <div class="settings-section">
+                        <h3>Музыка</h3>
+                        <div class="music-controls">
+                            <button class="control-button prev-track">⏮️</button>
+                            <button class="control-button play-pause">⏯️</button>
+                            <button class="control-button next-track">⏭️</button>
+                        </div>
+                        <div class="volume-control">
+                            <span class="volume-icon">🔊</span>
+                            <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                        </div>
+                        <div class="music-tracks">
+                            <h4>Список треков</h4>
+                            <div class="tracks-list"></div>
+                        </div>
+                        <audio id="bgMusic" preload="auto">
+                            <source src="" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    <div class="settings-section">
+                        <h3>Обои</h3>
+                        <div class="wallpaper-controls">
+                            <div class="wallpaper-option">
+                                <input type="radio" id="autoWallpaper" name="wallpaperMode" value="auto" checked>
+                                <label for="autoWallpaper">Автоматическая смена (День/Ночь)</label>
+                            </div>
+                            <div class="wallpaper-option">
+                                <input type="radio" id="dayWallpaper" name="wallpaperMode" value="day">
+                                <label for="dayWallpaper">Всегда дневные</label>
+                            </div>
+                            <div class="wallpaper-option">
+                                <input type="radio" id="nightWallpaper" name="wallpaperMode" value="night">
+                                <label for="nightWallpaper">Всегда ночные</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3>Сохранение</h3>
+                        <button class="save-button" id="exportButton">💾 Сохранение</button>
+                        <button class="save-button" id="importButton">📂 Загрузка</button>
+                        <input type="text" id="importInput" placeholder="Вставьте код сохранения" style="display: none;">
+                    </div>
+                    <div class="settings-section">
+                        <h3>История обновлений</h3>
+                        <div class="patch-log">
+                            <div class="patch-version">
+                                <div class="patch-header">
+                                    <div class="patch-number">Версия 1.1.2</div>
+                                    <div class="patch-date">6 Марта 2025</div>
+                                </div>
+                                <ul class="patch-changes">
+                                    <li><span class="patch-type new">новое</span>Добавлен магазин с улучшениями</li>
+                                    <li><span class="patch-type new">новое</span>Добавлена анимация появления предметов в магазине</li>
+                                    <li><span class="patch-type update">обновление</span>Улучшен интерфейс настроек</li>
+                                    <li><span class="patch-type fix">исправление</span>Исправлены проблемы с отображением на мобильных устройствах</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="patch-version">
+                                <div class="patch-header">
+                                    <div class="patch-number">Версия 1.1.1</div>
+                                    <div class="patch-date">5 Марта 2025</div>
+                                </div>
+                                <ul class="patch-changes">
+                                    <li><span class="patch-type new">новое</span>Запуск игры</li>
+                                    <li><span class="patch-type new">новое</span>Базовая механика кликера</li>
+                                    <li><span class="patch-type new">новое</span>Система улучшений</li>
+                                    <li><span class="patch-type new">новое</span>Фоновая музыка и звуковые эффекты</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="version-info">Версия v1.1.2</div>
                 </div>
-                <audio id="bgMusic" preload="auto">
-                    <source src="" type="audio/mpeg">
-                </audio>
             </div>
             <div class="title-container">
                 <h1><span>Morgana</span><span>Clicker</span></h1>
@@ -67,13 +138,63 @@
             <div class="click-area" id="clickArea">
                 <img src="morgana_head.png" alt="Morgana" class="morgana">
             </div>
-            <div class="upgrades">
-                <h2>Улучшения</h2>
-                <div class="upgrade-item">
-                    <button id="autoClicker">Автокликер (100 очков)</button>
+        </div>
+    </div>
+    <div class="shop-overlay">
+        <div class="shop-container">
+            <div class="shop-header">
+                <div class="shop-title">
+                    <h2>Магазин</h2>
                 </div>
-                <div class="upgrade-item">
-                    <button id="multiplier">Множитель +0.25 (200 очков)</button>
+                <button class="shop-close">&times;</button>
+            </div>
+            <div class="shop-shelves">
+                <div class="shop-item">
+                    <div class="shop-item-header">
+                        <img src="shop icon.png" alt="Автокликер" class="shop-item-icon">
+                        <div class="shop-item-title">Автокликер</div>
+                    </div>
+                    <div class="shop-item-description">Автоматически кликает каждую секунду</div>
+                    <div class="shop-item-price">
+                        <span class="price-value"><span id="autoClickerPrice">100</span> очков</span>
+                        <button id="autoClickerButton" class="buy-button">Купить</button>
+                    </div>
+                </div>
+
+                <div class="shop-item">
+                    <div class="shop-item-header">
+                        <img src="shop icon.png" alt="Множитель" class="shop-item-icon">
+                        <div class="shop-item-title">Множитель</div>
+                    </div>
+                    <div class="shop-item-description">Увеличивает количество очков за клик в 1.25 раза</div>
+                    <div class="shop-item-price">
+                        <span class="price-value"><span id="multiplierPrice">200</span> очков</span>
+                        <button id="multiplierButton" class="buy-button">Купить</button>
+                    </div>
+                </div>
+
+                <div class="shop-item">
+                    <div class="shop-item-header">
+                        <img src="shop icon.png" alt="Ускорение" class="shop-item-icon">
+                        <div class="shop-item-title">Ускорение</div>
+                    </div>
+                    <div class="shop-item-description">Увеличивает скорость автокликера на 10%</div>
+                    <div class="shop-item-price">
+                        <span class="price-value"><span id="speedUpgradePrice">325</span> очков</span>
+                        <button id="speedUpgradeButton" class="buy-button">Купить</button>
+                    </div>
+                </div>
+
+                <div class="shop-item">
+                    <div class="shop-item-header">
+                        <img src="MusicShopIcon.png" alt="Музыка" class="shop-item-icon">
+                        <div class="shop-item-title">Музыка</div>
+                    </div>
+                    <div class="shop-item-description">Разблокирует новый музыкальный трек</div>
+                    <div class="shop-item-price">
+                        <span class="price-value"><span id="musicTrackPrice">1000</span> очков</span>
+                        <button id="musicTrackButton" class="buy-button">Купить</button>
+                    </div>
                 </div>
             </div>
         </div>
